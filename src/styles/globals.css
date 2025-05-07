@@ -2,21 +2,29 @@
 
 :root {
   --background-color: #0a0a0a;
-  --text-color: #fafafa;
-  --first-color: #ad46ff;
-  --second-color: #615fff;
-  --third-color: #2bb1ff;
+  --text-color: #f3f3f3;
+  --primary-color: #00c950;
 }
 
 @theme {
-  --color-primaty: var(--first-color);
-  --color-secondary: var(--second-color);
-  --color-tertiary: var(--third-color);
+  --color-primary: var(--primary-color);
   --color-text: var(--text-color);
   --color-background: var(--background-color);
+
+  --shadow-main: 0px 0px 20px var(--primary-color);
+  --text-shadow-main: 0px 0px 15px var(--primary-color);
+  --drop-shadow-main: 0px 0px 20px var(--primary-color);
 }
 
 body {
   background-color: var(--background-color);
   color: var(--text-color);
+}
+
+.nav-link::before {
+  @apply content-[''] absolute left-0 top-0 w-full h-full bg-primary/10 opacity-0 scale-0 rounded-full -z-10 transition-all duration-200 ease-in-out;
+}
+
+.nav-link:hover::before {
+  @apply opacity-100 scale-100;
 }
