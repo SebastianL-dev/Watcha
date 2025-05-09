@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { poppins } from "@/styles/fonts";
+import { lato } from "@/styles/fonts";
 import Header from "@/components/layout/header";
 
 import "@/styles/globals.css";
@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} antialiased`}>
+      <body className={`${lato.className} antialiased`}>
         <Header />
         {children}
       </body>

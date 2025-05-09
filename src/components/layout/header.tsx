@@ -8,7 +8,7 @@ import IconLink from "../ui/iconLink";
 
 export default function Header() {
   return (
-    <header className="flex justify-between items-center px-[10%] py-6">
+    <header className="flex justify-between items-center px-[10%] py-6 fixed w-full z-50 border-b-2 border-neutral-500/20">
       <motion.a
         className="flex gap-2 items-center drop-shadow-main/60 hover:drop-shadow-main/100"
         href={"/"}
@@ -18,7 +18,7 @@ export default function Header() {
         <Watcha />
       </motion.a>
 
-      <nav className="flex font-normal text-sm text-neutral-300">
+      <nav className="flex font-normal text-base text-neutral-50/70">
         <ul className="flex gap-4">
           <NavLink text="Home" href="" />
           <NavLink text="Movies" href="" />
@@ -27,7 +27,7 @@ export default function Header() {
       </nav>
 
       <div>
-        <ul className="flex gap-1 text-neutral-400">
+        <ul className="flex gap-1 text-neutral-50/70">
           <IconLink icon={<Search />} href="" aria="" blank={false} />
           <IconLink icon={<Moon />} href="" aria="" blank={false} />
           <IconLink
