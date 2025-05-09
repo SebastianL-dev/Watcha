@@ -10,7 +10,7 @@ export function Watcha(props: SVGProps<SVGSVGElement>) {
       viewBox="0 0 24 24"
       {...props}
     >
-      <circle cx={12} cy={12} r={0} fill="#05df72">
+      <circle cx={12} cy={12} r={0} fill="#00c950">
         <animate
           fill="freeze"
           attributeName="r"
@@ -19,9 +19,9 @@ export function Watcha(props: SVGProps<SVGSVGElement>) {
         ></animate>
       </circle>
       <path
-        fill="#05df72"
+        fill="#00c950"
         fillOpacity={0}
-        stroke="#05df72"
+        stroke="#00c950"
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth={2}

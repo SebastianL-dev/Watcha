@@ -3,8 +3,8 @@ import * as motion from "motion/react-client";
 import { Github } from "../icons/github";
 import { Search } from "../icons/search";
 import { Moon } from "../icons/moon";
-import NavLink from "../ui/navLink";
-import IconLink from "../ui/iconLink";
+import NavLink from "../ui/links/navLink";
+import IconLink from "../ui/links/iconLink";
 
 export default function Header() {
   return (

@@ -4,13 +4,15 @@ import React from "react";
 export default function MainLinkButton({
   text,
   primary,
+  blank,
   icon,
   href,
 }: {
   text: string;
   primary: boolean;
+  blank: boolean;
   icon?: React.ReactNode;
-  href: string;
+  href?: string | null;
 }) {
   const colors = primary
     ? "bg-green-600 hover:bg-primary shadow-button-primary"
@@ -20,7 +22,9 @@ export default function MainLinkButton({
     <motion.a
       className={`flex gap-2 px-4 py-2 w-fit rounded-full items-center font-semibold transition-colors ease-in-out duration-200 ${colors}`}
       aria-label={`${text} link`}
-      href={href}
+      target={blank ? "_blank" : ""}
+      rel="noopener noreferrer"
+      href={href ? href : ""}
       whileHover={{ scale: 1.2 }}
       whileTap={{ scale: 0.9 }}
     >

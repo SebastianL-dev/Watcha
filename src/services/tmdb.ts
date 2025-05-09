@@ -1,5 +1,5 @@
 import Media from "@/interfaces/media.interface";
-import MediaDetails from "@/interfaces/mediaDetails.interface";
+import { MediaDetail, MediaType } from "@/types/common.types";
 import axios from "axios";
 
 const image_url = "https://image.tmdb.org/t/p/original";
@@ -15,13 +15,13 @@ export async function getTrendingAll(): Promise<Media[]> {
   return response.data.results;
 }
 
-export async function getDetails(
-  type: string,
+export async function getMediaDetails(
+  type: MediaType,
   id: number
-): Promise<MediaDetails> {
-  const response = await axios.get(`/api/all/details?type=${type}&id=${id}`);
+): Promise<MediaDetail> {
+  const response = await axios.get(`/api/all/details`, {
+    params: { type, id },
+  });
 
-  console.log("Hola");
-  console.log(response.data);
   return response.data;
 }
