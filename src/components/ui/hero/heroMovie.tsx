@@ -10,8 +10,31 @@ import * as motion from "motion/react-client";
 import MainLinkButton from "@/components/ui/buttons/mainLinkButton";
 import { Play } from "@/components/icons/play";
 import { External } from "@/components/icons/external";
+import ReleaseDates from "@/interfaces/releaseDates.interface";
+import FormatMovieClasification from "@/utils/formatMovieClasification";
 
-export default function HeroMovie({ movie }: { movie: Movie }) {
+export default function HeroMovie({
+  movie,
+  release,
+}: {
+  movie: Movie;
+  release: ReleaseDates[];
+}) {
+  const clasification = FormatMovieClasification(release);
+
+  const releaseColor = () => {
+    if (clasification === "G")
+      return "bg-primary/15 border-primary/85 text-primary/85 drop-shadow-main";
+    if (clasification === "PG")
+      return "bg-primary/15 border-primary/85 text-primary/85 drop-shadow-main";
+    if (clasification === "PG-13")
+      return "bg-sky-500/10 border-sky-500/85 text-sky-500/85 drop-shadow-blue";
+    if (clasification === "R")
+      return "bg-amber-300/10 border-amber-300/85 text-amber-300/85 drop-shadow-yellow";
+    if (clasification === "NC-17")
+      return "bg-red-500/10 border-red-500/85 text-red-500/85 drop-shadow-red";
+  };
+
   return (
     <>
       <div className="flex w-full h-screen hero-image absolute inset-0">
@@ -25,10 +48,21 @@ export default function HeroMovie({ movie }: { movie: Movie }) {
       </div>
 
       <article className="flex flex-col relative z-50 text-text">
-        <div className="text-base text-text/70 mb-8 font-medium flex gap-2 items-center">
-          <Clock />
-          <span>{FormatDuration(movie.runtime ? movie.runtime : 0)}</span>
-        </div>
+        <ul className="flex gap-4">
+          <li>
+            <div className="text-base text-text/70 mb-8 font-medium flex gap-2 items-center">
+              <Clock />
+              <span>{FormatDuration(movie.runtime ? movie.runtime : 0)}</span>
+            </div>
+          </li>
+          <li>
+            <span
+              className={`font-light border-1 text-sm px-2.5 py-0.5 rounded-full ${releaseColor()}`}
+            >
+              {clasification}
+            </span>
+          </li>
+        </ul>
 
         <ul className="flex gap-6 mb-4 text-lg font-semibold">
           <li className="flex gap-2 items-center">

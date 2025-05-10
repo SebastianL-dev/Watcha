@@ -1,6 +1,8 @@
 import Media from "@/interfaces/media.interface";
 import { MediaDetail, MediaType } from "@/types/common.types";
 import axios from "axios";
+import ReleaseDates from "@/interfaces/releaseDates.interface";
+import ContentRatings from "@/interfaces/contentRatings.interface";
 
 const image_url = "https://image.tmdb.org/t/p/original";
 
@@ -24,4 +26,24 @@ export async function getMediaDetails(
   });
 
   return response.data;
+}
+
+export async function getMovieClasification(
+  id: number
+): Promise<ReleaseDates[]> {
+  const response = await axios.get("/api/movies/clasification", {
+    params: { id },
+  });
+
+  return response.data.results;
+}
+
+export async function getTvClasification(
+  id: number
+): Promise<ContentRatings[]> {
+  const response = await axios.get("/api/tv/clasification", {
+    params: { id },
+  });
+
+  return response.data.results;
 }

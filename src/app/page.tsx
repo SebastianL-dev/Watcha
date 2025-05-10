@@ -1,10 +1,10 @@
-import Hero from "@/components/sections/hero";
+import MainHero from "@/components/sections/mainHero";
 import TrendingSection from "@/components/sections/trendingSection";
 
 export default function Home() {
   return (
     <main>
-      <Hero />
+      <MainHero />
       {/* <TrendingSection /> */}
     </main>
   );

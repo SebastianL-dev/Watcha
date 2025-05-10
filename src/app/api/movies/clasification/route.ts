@@ -7,17 +7,16 @@ const env = EnvConfig;
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
 
-  const type = searchParams.get("type");
   const id = searchParams.get("id");
 
-  if (!type)
+  if (!id)
     return NextResponse.json({
-      error: "Media type is required to get details.",
+      error: "Media ID is required to get details.",
       status: 400,
     });
 
   const response = await api.get(
-    `/${type}/${id}?api_key=${env.api_key}&language=en-US`
+    `/movie/${id}/release_dates?api_key=${env.api_key}&language=en-US`
   );
 
   return NextResponse.json(response.data);
