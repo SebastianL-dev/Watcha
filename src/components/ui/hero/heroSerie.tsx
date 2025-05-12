@@ -43,6 +43,7 @@ export default function HeroSerie({
           alt={`${serie.name} backdrop image`}
           fill
           priority
+          loading="eager"
           className="object-cover hero-image relative z-0"
         />
       </div>

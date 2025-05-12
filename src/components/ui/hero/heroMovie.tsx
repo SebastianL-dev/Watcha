@@ -43,6 +43,7 @@ export default function HeroMovie({
           alt={`${movie.title} backdrop image`}
           fill
           priority
+          loading="eager"
           className="object-cover relative z-0"
         />
       </div>

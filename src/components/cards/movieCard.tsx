@@ -26,11 +26,13 @@ export default function MovieCard({ movie, id }: { movie: Movie; id: number }) {
         </div>
 
         <div className="flex flex-col gap-2 bg-neutral-950 backdrop-blur-sm p-2 grow z-10">
-          <span className="text-lg font-bold text-ellipsis max-w-[208px] overflow-hidden whitespace-nowrap">
-            {movie.title}
-          </span>
+          <header>
+            <span className="text-lg font-bold text-ellipsis max-w-[208px] overflow-hidden whitespace-nowrap">
+              {movie.title}
+            </span>
+          </header>
 
-          <div className="flex justify-between text-sm">
+          <footer className="flex justify-between text-sm">
             <time className="font-normal text-neutral-400">
               {FormatDate(movie.release_date)}
             </time>
@@ -45,7 +47,7 @@ export default function MovieCard({ movie, id }: { movie: Movie; id: number }) {
                 <span>{movie.vote_average.toFixed(1)}</span>
               </div>
             </div>
-          </div>
+          </footer>
         </div>
       </article>
     </Link>

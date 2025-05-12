@@ -11,20 +11,31 @@ export async function GET(req: NextRequest) {
   const id = searchParams.get("id");
 
   if (!type)
-    return NextResponse.json({
-      error: "Media type is required to get details.",
-      status: 400,
-    });
+    return NextResponse.json(
+      { error: "Media type is required to get details.", status: 400 },
+      { status: 400 }
+    );
 
   if (!id)
-    return NextResponse.json({
-      error: "Media ID is required to get details.",
-      status: 400,
+    return NextResponse.json(
+      { error: "Media ID is required to get details.", status: 400 },
+      { status: 400 }
+    );
+
+  try {
+    const response = await api.get(
+      `/${type}/${id}?api_key=${env.api_key}&language=en-US`
+    );
+
+    return NextResponse.json(response.data, {
+      headers: {
+        "Cache-Control": "public, max-age=3600",
+      },
     });
-
-  const response = await api.get(
-    `/${type}/${id}?api_key=${env.api_key}&language=en-US`
-  );
-
-  return NextResponse.json(response.data);
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Failed to fetch details.", status: 500 },
+      { status: 500 }
+    );
+  }
 }

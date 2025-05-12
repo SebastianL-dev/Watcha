@@ -1,5 +1,6 @@
 "use client";
 
+import HeroSkeleton from "@/components/skeletons/heroSkeleton";
 import HeroMovie from "@/components/ui/hero/heroMovie";
 import Movie from "@/interfaces/movie.interface";
 import ReleaseDates from "@/interfaces/releaseDates.interface";
@@ -30,7 +31,7 @@ export default function MoviePage({
     fetchMovie();
   }, []);
 
-  if (!movie) return <div>Not found</div>;
+  if (!movie) return <HeroSkeleton />;
 
   return (
     <section

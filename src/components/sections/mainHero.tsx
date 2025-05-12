@@ -15,6 +15,7 @@ import Serie from "@/interfaces/serie.interface";
 import HeroSerie from "../ui/hero/heroSerie";
 import ReleaseDates from "@/interfaces/releaseDates.interface";
 import ContentRatings from "@/interfaces/contentRatings.interface";
+import HeroSkeleton from "../skeletons/heroSkeleton";
 
 export default function MainHero() {
   const [trendingMedia, setTrendingMedia] = useState<Media>();
@@ -49,8 +50,8 @@ export default function MainHero() {
     fetchTrendingMedia();
   }, []);
 
-  if (!trendingMediaDetails) return <div>Not found</div>;
-  if (!trendingMedia) return <div>Not found</div>;
+  if (!trendingMediaDetails) return <HeroSkeleton />;
+  if (!trendingMedia) return <HeroSkeleton />;
 
   return (
     <section

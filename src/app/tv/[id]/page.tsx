@@ -1,5 +1,6 @@
 "use client";
 
+import HeroSkeleton from "@/components/skeletons/heroSkeleton";
 import HeroSerie from "@/components/ui/hero/heroSerie";
 import ContentRatings from "@/interfaces/contentRatings.interface";
 import Serie from "@/interfaces/serie.interface";
@@ -30,7 +31,7 @@ export default function SeriePage({
     fetchMovie();
   }, []);
 
-  if (!serie) return <div>Not found</div>;
+  if (!serie) return <HeroSkeleton />;
 
   return (
     <section

@@ -25,11 +25,13 @@ export default function TvCard({ tv, id }: { tv: Serie; id: number }) {
         </div>
 
         <div className="flex flex-col gap-2 bg-neutral-950 backdrop-blur-sm p-2 grow z-10">
-          <span className="text-lg font-bold text-ellipsis max-w-[208px] overflow-hidden whitespace-nowrap">
-            {tv.name}
-          </span>
+          <header>
+            <span className="text-lg font-bold text-ellipsis max-w-[208px] overflow-hidden whitespace-nowrap">
+              {tv.name}
+            </span>
+          </header>
 
-          <div className="flex justify-between text-sm">
+          <footer className="flex justify-between text-sm">
             <time className="font-normal text-neutral-400">
               {FormatDate(tv.first_air_date)}
             </time>
@@ -44,7 +46,7 @@ export default function TvCard({ tv, id }: { tv: Serie; id: number }) {
                 <span>{tv.vote_average.toFixed(1)}</span>
               </div>
             </div>
-          </div>
+          </footer>
         </div>
       </article>
     </Link>

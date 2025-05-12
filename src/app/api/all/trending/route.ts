@@ -5,9 +5,20 @@ import { NextResponse } from "next/server";
 const env = EnvConfig;
 
 export async function GET() {
-  const response = await api.get(
-    `/trending/all/week?api_key=${env.api_key}&language=en-US`
-  );
+  try {
+    const response = await api.get(
+      `/trending/all/week?api_key=${env.api_key}&language=en-US`
+    );
 
-  return NextResponse.json(response.data);
+    return NextResponse.json(response.data, {
+      headers: {
+        "Cache-Control": "public, max-age=3600",
+      },
+    });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Failed to fetch details.", status: 500 },
+      { status: 500 }
+    );
+  }
 }
