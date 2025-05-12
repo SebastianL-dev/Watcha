@@ -1,3 +1,5 @@
+"use client";
+
 import { Watcha } from "../icons/watcha";
 import * as motion from "motion/react-client";
 import { Github } from "../icons/github";
@@ -5,10 +7,31 @@ import { Search } from "../icons/search";
 import { Moon } from "../icons/moon";
 import NavLink from "../ui/links/navLink";
 import IconLink from "../ui/links/iconLink";
+import { useEffect, useState } from "react";
 
 export default function Header() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
+
   return (
-    <header className="flex justify-between items-center px-[10%] py-6 fixed w-full z-50 border-b-2 border-neutral-500/20">
+    <header
+      className={`flex justify-between items-center px-[10%] py-6 fixed w-full z-100 border-b-2 border-neutral-500/20 transition-all ease-in-out duration-200 ${
+        scrolled ? "bg-neutral-950/60 backdrop-blur-md" : ""
+      }`}
+    >
       <motion.a
         className="flex gap-2 items-center drop-shadow-main/60 hover:drop-shadow-main/100"
         href={"/"}
