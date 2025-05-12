@@ -51,7 +51,6 @@ export default function MainHero() {
 
   if (!trendingMediaDetails) return <div>Not found</div>;
   if (!trendingMedia) return <div>Not found</div>;
-  if (!clasification) return <div>Not found</div>;
 
   return (
     <section

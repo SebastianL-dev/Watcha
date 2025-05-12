@@ -31,7 +31,6 @@ export default function SeriePage({
   }, []);
 
   if (!serie) return <div>Not found</div>;
-  if (!contentRatings) return <div>Not found</div>;
 
   return (
     <section

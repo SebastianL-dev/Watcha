@@ -31,7 +31,6 @@ export default function MoviePage({
   }, []);
 
   if (!movie) return <div>Not found</div>;
-  if (!releaseDates) return <div>Not found</div>;
 
   return (
     <section

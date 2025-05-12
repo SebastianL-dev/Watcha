@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
 
 module.exports = {
   images: {
-    remotePatterns: [new URL("https://image.tmdb.org/t/p/original/**")],
+    remotePatterns: [new URL("https://image.tmdb.org/t/p/**")],
   },
 };
 

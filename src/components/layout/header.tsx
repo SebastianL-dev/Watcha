@@ -15,7 +15,7 @@ export default function Header() {
         whileHover={{ scale: 1.2 }}
         whileTap={{ scale: 0.9 }}
       >
-        <Watcha />
+        <Watcha className="text-primary" />
       </motion.a>
 
       <nav className="flex font-normal text-base text-neutral-50/70">

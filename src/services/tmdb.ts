@@ -4,15 +4,22 @@ import axios from "axios";
 import ReleaseDates from "@/interfaces/releaseDates.interface";
 import ContentRatings from "@/interfaces/contentRatings.interface";
 
-const image_url = "https://image.tmdb.org/t/p/original";
+const image_url = "https://image.tmdb.org/t/p/";
 
-export function getImageUrl(path: string | null): string {
+export function getImageUrl(path: string | null, size: string): string {
   if (!path) return "/";
-  return `${image_url}${path}`;
+
+  return `${image_url}/${size}${path}`;
 }
 
 export async function getTrendingAll(): Promise<Media[]> {
   const response = await axios.get("/api/all/trending");
+
+  return response.data.results;
+}
+
+export async function getPopularMovies(): Promise<Media[]> {
+  const response = await axios.get("/api/movies/popular");
 
   return response.data.results;
 }

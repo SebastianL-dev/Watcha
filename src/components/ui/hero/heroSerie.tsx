@@ -17,9 +17,9 @@ export default function HeroSerie({
   rating,
 }: {
   serie: Serie;
-  rating: ContentRatings[];
+  rating?: ContentRatings[];
 }) {
-  const clasification = FormatTvClasification(rating);
+  const clasification = rating ? FormatTvClasification(rating) : "";
 
   const rateColor = () => {
     if (clasification === "TV-Y")
@@ -39,8 +39,8 @@ export default function HeroSerie({
     <>
       <div className="flex w-full h-screen hero-image absolute inset-0">
         <Image
-          src={getImageUrl(serie.backdrop_path)}
-          alt={serie.name}
+          src={getImageUrl(serie.backdrop_path, "original")}
+          alt={`${serie.name} backdrop image`}
           fill
           priority
           className="object-cover hero-image relative z-0"
@@ -83,13 +83,15 @@ export default function HeroSerie({
               </div>
             </div>
           </li>
-          <li>
-            <span
-              className={`font-light border-1 text-sm px-2.5 py-0.5 rounded-full ${rateColor()}`}
-            >
-              {clasification}
-            </span>
-          </li>
+          {clasification !== "" && (
+            <li>
+              <span
+                className={`font-light border-1 text-sm px-2.5 py-0.5 rounded-full ${rateColor()}`}
+              >
+                {clasification}
+              </span>
+            </li>
+          )}
         </ul>
 
         <ul className="flex gap-6 mb-4 text-lg font-semibold">

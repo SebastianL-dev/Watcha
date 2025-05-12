@@ -18,9 +18,9 @@ export default function HeroMovie({
   release,
 }: {
   movie: Movie;
-  release: ReleaseDates[];
+  release?: ReleaseDates[];
 }) {
-  const clasification = FormatMovieClasification(release);
+  const clasification = release ? FormatMovieClasification(release) : "";
 
   const releaseColor = () => {
     if (clasification === "G")
@@ -39,11 +39,11 @@ export default function HeroMovie({
     <>
       <div className="flex w-full h-screen hero-image absolute inset-0">
         <Image
-          src={getImageUrl(movie.backdrop_path)}
-          alt={movie.title}
+          src={getImageUrl(movie.backdrop_path, "original")}
+          alt={`${movie.title} backdrop image`}
           fill
           priority
-          className="object-cover hero-image relative z-0"
+          className="object-cover relative z-0"
         />
       </div>
 
@@ -55,13 +55,15 @@ export default function HeroMovie({
               <span>{FormatDuration(movie.runtime ? movie.runtime : 0)}</span>
             </div>
           </li>
-          <li>
-            <span
-              className={`font-light border-1 text-sm px-2.5 py-0.5 rounded-full ${releaseColor()}`}
-            >
-              {clasification}
-            </span>
-          </li>
+          {clasification !== "" && (
+            <li>
+              <span
+                className={`font-light border-1 text-sm px-2.5 py-0.5 rounded-full ${releaseColor()}`}
+              >
+                {clasification}
+              </span>
+            </li>
+          )}
         </ul>
 
         <ul className="flex gap-6 mb-4 text-lg font-semibold">
