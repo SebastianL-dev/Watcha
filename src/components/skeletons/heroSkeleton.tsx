@@ -1,23 +1,10 @@
-import { Clock } from "../icons/clock";
-import { Play } from "../icons/play";
-import { Star } from "../icons/star";
-import MainLinkButton from "../ui/buttons/mainLinkButton";
-
 export default function HeroSkeleton() {
   return (
     <section
       className="flex mx-[10%] h-screen items-center"
       aria-label="Hero section with trending media"
     >
-      <div className="flex w-full h-screen hero-image absolute inset-0">
-        {/* <Image
-          src={getImageUrl(movie.backdrop_path, "original")}
-          alt={`${movie.title} backdrop image`}
-          fill
-          priority
-          className="object-cover relative z-0"
-        /> */}
-      </div>
+      <div className="flex w-full h-screen hero-image absolute inset-0"></div>
 
       <article className="flex flex-col relative z-50 text-text">
         <ul className="flex gap-4">
@@ -50,7 +37,7 @@ export default function HeroSkeleton() {
           <div className="h-8 w-64 bg-neutral-600 rounded-lg animate-pulse" />
         </div>
 
-        <ul className="flex gap-4 text-sm my-6" aria-label="Generes">
+        <ul className="flex gap-4 text-sm my-6" aria-label="Generes Skeleton">
           <li className="flex gap-2 items-center">
             <div className="h-5 w-12 bg-primary/20 rounded-full animate-pulse" />
           </li>
@@ -61,27 +48,16 @@ export default function HeroSkeleton() {
         </ul>
 
         <div className="flex flex-col gap-2 mb-20">
-          <div className="h-3 w-96 bg-neutral-700 rounded-full animate-pulse" />
-          <div className="h-3 w-92 bg-neutral-700 rounded-full animate-pulse" />
-          <div className="h-3 w-94 bg-neutral-700 rounded-full animate-pulse" />
-          <div className="h-3 w-72 bg-neutral-700 rounded-full animate-pulse" />
+          <div className="h-4 w-96 bg-neutral-700 rounded-full animate-pulse" />
+          <div className="h-4 w-92 bg-neutral-700 rounded-full animate-pulse" />
+          <div className="h-4 w-94 bg-neutral-700 rounded-full animate-pulse" />
+          <div className="h-4 w-72 bg-neutral-700 rounded-full animate-pulse" />
         </div>
 
-        <ul className="flex gap-6" aria-label="Action buttons">
+        <ul className="flex gap-6" aria-label="Action buttons Skeleton">
           <li>
             <div className="h-11 w-38 bg-primary/40 rounded-full animate-pulse" />
           </li>
-          {/* {movie.homepage && (
-            <li>
-              <MainLinkButton
-                text="Home page"
-                primary={false}
-                blank
-                icon={<External />}
-                href={movie.homepage}
-              />
-            </li>
-          )} */}
         </ul>
       </article>
     </section>

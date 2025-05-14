@@ -15,6 +15,7 @@
   --shadow-main: 0px 0px 20px var(--primary-color);
   --shadow-button-primary: 0px 0px 50px var(--secondary-color);
   --shadow-button-white: 0px 0px 50px #ffffff44;
+  --shadow-footer: 0px 0px 70px var(--primary-color);
 
   --text-shadow-main: 0px 0px 15px var(--primary-color);
   --text-shadow-blue: 0px 0px 15px #00a6f4;
@@ -31,7 +32,7 @@ body {
 }
 
 .nav-link::before {
-  @apply content-[''] absolute left-0 top-0 w-full h-full bg-primary/10 opacity-0 scale-0 rounded-full -z-10 transition-all duration-200 ease-in-out;
+  @apply content-[''] absolute left-0 top-0 w-full h-full bg-primary/15 opacity-0 scale-0 rounded-full -z-10 transition-all duration-200 ease-in-out;
 }
 
 .nav-link:hover::before {

@@ -4,7 +4,6 @@ import { Watcha } from "../icons/watcha";
 import * as motion from "motion/react-client";
 import { Github } from "../icons/github";
 import { Search } from "../icons/search";
-import { Moon } from "../icons/moon";
 import NavLink from "../ui/links/navLink";
 import IconLink from "../ui/links/iconLink";
 import { useEffect, useState } from "react";
@@ -14,7 +13,7 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 0);
+      setScrolled(window.scrollY > 110);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -50,9 +49,8 @@ export default function Header() {
       </nav>
 
       <div>
-        <ul className="flex gap-1 text-neutral-50/70">
+        <ul className="flex gap-4 text-neutral-50/70">
           <IconLink icon={<Search />} href="" aria="" blank={false} />
-          <IconLink icon={<Moon />} href="" aria="" blank={false} />
           <IconLink
             icon={<Github />}
             href="https://github.com/SebastianL-dev/watcha"
