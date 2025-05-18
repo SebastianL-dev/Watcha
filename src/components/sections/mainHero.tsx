@@ -55,7 +55,7 @@ export default function MainHero() {
 
   return (
     <section
-      className="flex mx-[10%] h-screen items-center"
+      className="flex mx-[10%] h-screen items-center max-md:justify-center"
       aria-label="Hero section with trending media"
     >
       {trendingMedia.media_type === "movie" && (

@@ -32,6 +32,7 @@ export default function MainSwiper({
           )
         )
       );
+
       setMediaDetails(details);
     };
 
@@ -48,9 +49,11 @@ export default function MainSwiper({
       prevEl: ".swiper-button-prev",
     },
     breakpoints: {
-      640: { slidesPerView: 2, spaceBetween: 10 },
-      768: { slidesPerView: 4, spaceBetween: 10 },
-      1024: { slidesPerView: 6, spaceBetween: 10 },
+      550: { slidesPerView: 2, spaceBetween: 10 },
+      830: { slidesPerView: 3, spaceBetween: 10 },
+      1100: { slidesPerView: 4, spaceBetween: 10 },
+      1450: { slidesPerView: 5, spaceBetween: 10 },
+      1700: { slidesPerView: 6, spaceBetween: 10 },
     },
   };
 

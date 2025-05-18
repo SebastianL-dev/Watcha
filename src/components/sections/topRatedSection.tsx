@@ -22,8 +22,6 @@ export default function TopRatedSection() {
     };
 
     fetchRatedMovies();
-
-    console.log(topRated);
   }, [topRated]);
 
   if (!topRated) return <></>;
@@ -35,10 +33,20 @@ export default function TopRatedSection() {
         <h2 className="font-bold text-3xl">Top Rated Movies</h2>
       </div>
 
-      <ul className="flex flex-wrap gap-8 mx-[10%] justify-center">
+      <ul className="gap-8 mx-[10%] justify-center grid grid-cols-3 max-xl:grid-cols-2 max-md:flex max-md:flex-col max-md:items-center">
         {topRated.map((movie, index) => {
+          const isLastInOddRow =
+            topRated.length % 2 === 1 && index === topRated.length - 1;
+
           return (
-            <li key={movie.id} className="basis-1/4 flex-1 max-w-[482px]">
+            <li
+              key={movie.id}
+              className={`max-w-[482px] ${
+                isLastInOddRow
+                  ? "max-xl:col-span-2 max-xl:justify-self-center max-md:col-span-1"
+                  : ""
+              }`}
+            >
               <Link className="group" href={`/movie/${movie.id}`}>
                 <article className="flex flex-col rounded-2xl overflow-hidden border-2 border-neutral-800 bg-neutral-950 grow h-full">
                   <div className="relative flex h-96 media-image-card before:bg-transparent group-hover:before:bg-neutral-950/50 group-hover:before:backdrop-blur-xs">
@@ -48,7 +56,7 @@ export default function TopRatedSection() {
                       fill
                       loading="lazy"
                       sizes="(max-width: 1200px) 50vw, 33vw"
-                      className="w-1/3 h-full object-cover group-hover:scale-110 transition-all ease-in-out duration-200"
+                      className="z-10 object-cover w-full h-full group-hover:scale-110 transition-all ease-in-out duration-200"
                     />
 
                     <div className="absolute flex flex-col items-center gap-1 z-20 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-transparent group-hover:text-text/50 transition-all ease-in-out duration-200 scale-50 group-hover:scale-100">
@@ -58,7 +66,7 @@ export default function TopRatedSection() {
                   </div>
 
                   <div className="flex flex-col p-6 gap-4 bg-neutral-950 z-10">
-                    <span className="font-bold text-2xl text-ellipsis overflow-hidden whitespace-nowrap">
+                    <span className="block text-2xl font-bold text-ellipsis overflow-hidden whitespace-nowrap w-full max-w-[500px] max-md:w-72">
                       {movie.title}
                     </span>
 

@@ -13,7 +13,6 @@ export default function PopularMoviesSection() {
     const fetchPopularMovies = async () => {
       const popular = await getPopularMovies();
 
-      console.log(popular);
       setPopularMovies(popular);
     };
 

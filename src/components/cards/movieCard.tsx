@@ -28,7 +28,7 @@ export default function MovieCard({ movie, id }: { movie: Movie; id: number }) {
 
         <div className="flex flex-col gap-2 bg-neutral-950 backdrop-blur-sm p-2 grow z-10">
           <header>
-            <span className="text-lg font-bold text-ellipsis max-w-[208px] overflow-hidden whitespace-nowrap">
+            <span className="block text-lg font-bold text-ellipsis overflow-hidden whitespace-nowrap w-full max-w-[500px]">
               {movie.title}
             </span>
           </header>

@@ -13,7 +13,6 @@ export default function PopularTvSection() {
     const fetchPopularTv = async () => {
       const popular = await getPopularTv();
 
-      console.log(popular);
       setPopularTv(popular);
     };
 

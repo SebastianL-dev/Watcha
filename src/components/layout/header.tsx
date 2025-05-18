@@ -41,7 +41,7 @@ export default function Header() {
       </motion.a>
 
       <nav className="flex font-normal text-base text-neutral-50/70">
-        <ul className="flex gap-4">
+        <ul className="flex gap-4 max-sm:hidden">
           <NavLink text="Home" href="/" />
           <NavLink text="Movies" href="/movies" />
           <NavLink text="Series" href="/series" />

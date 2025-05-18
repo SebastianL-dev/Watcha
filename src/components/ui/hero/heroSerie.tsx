@@ -57,17 +57,17 @@ export default function HeroSerie({
                 <span>
                   Season{" "}
                   <span className="text-primary">
-                    {serie.last_episode_to_air.season_number}
+                    {serie.number_of_seasons}
                   </span>
                 </span>
 
                 <div className="w-1 h-1 rounded-full bg-text/40 mx-2" />
 
                 <span>
-                  Episode{" "}
                   <span className="text-primary">
-                    {serie.last_episode_to_air.episode_number}
-                  </span>
+                    {serie.number_of_episodes}
+                  </span>{" "}
+                  Episodes
                 </span>
 
                 <div className="w-1 h-1 rounded-full bg-text/40 mx-2" />

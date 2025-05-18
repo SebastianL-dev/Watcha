@@ -27,7 +27,7 @@ export default function TvCard({ tv, id }: { tv: Serie; id: number }) {
 
         <div className="flex flex-col gap-2 bg-neutral-950 backdrop-blur-sm p-2 grow z-10">
           <header>
-            <span className="text-lg font-bold text-ellipsis max-w-[208px] overflow-hidden whitespace-nowrap">
+            <span className="block text-lg font-bold text-ellipsis overflow-hidden whitespace-nowrap w-full max-w-[500px]">
               {tv.name}
             </span>
           </header>
@@ -39,7 +39,7 @@ export default function TvCard({ tv, id }: { tv: Serie; id: number }) {
 
             <div className="flex gap-3 items-center">
               <span className="text-sky-500/80 bg-sky-500/10 border border-sky-500/80 drop-shadow-blue rounded-full px-2 py-0.5 text-xs">
-                {tv.last_episode_to_air.season_number} Seasons
+                {tv.number_of_seasons} Seasons
               </span>
 
               <div className="text-amber-300 flex items-center gap-1">

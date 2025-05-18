@@ -49,9 +49,9 @@ export default function HeroMovie({
       </div>
 
       <article className="flex flex-col relative z-50 text-text">
-        <ul className="flex gap-4">
+        <ul className="flex gap-4 mb-8">
           <li>
-            <div className="text-base text-text/70 mb-8 font-medium flex gap-2 items-center">
+            <div className="text-base text-text/70 font-medium flex gap-2 items-center">
               <Clock />
               <span>{FormatDuration(movie.runtime ? movie.runtime : 0)}</span>
             </div>
@@ -80,14 +80,14 @@ export default function HeroMovie({
         </ul>
 
         <div className="flex flex-col gap-4">
-          <h1 className="text-6xl font-black">{movie.title}</h1>
+          <h1 className="text-6xl font-black max-sm:text-4xl">{movie.title}</h1>
 
           {movie.tagline && (
             <p className="text-xl font-medium text-text/75">{movie.tagline}</p>
           )}
         </div>
 
-        <ul className="flex gap-4 text-sm my-6" aria-label="Generes">
+        <ul className="flex gap-4 text-sm my-6 flex-wrap" aria-label="Generes">
           {movie.genres.map((genere) => {
             return (
               <li key={genere.id}>
@@ -107,7 +107,7 @@ export default function HeroMovie({
 
         <p className="max-w-xl text-text/90 mb-16">{movie.overview}</p>
 
-        <ul className="flex gap-6" aria-label="Action buttons">
+        <ul className="flex gap-6 max-sm:flex-col" aria-label="Action buttons">
           <li>
             <MainLinkButton
               text="Watch trailer"
