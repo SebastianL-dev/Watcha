@@ -55,7 +55,7 @@ export default function MainHero() {
 
   return (
     <section
-      className="flex mx-[10%] h-screen items-center max-md:justify-center"
+      className="flex mx-[10%] h-screen items-center max-md:justify-center max-md:mb-64 max-[400px]:pt-64 hero"
       aria-label="Hero section with trending media"
     >
       {trendingMedia.media_type === "movie" && (
@@ -70,6 +70,19 @@ export default function MainHero() {
           rating={clasification as ContentRatings[]}
         />
       )}
+
+      <style jsx global>{`
+        @media (max-height: 700px) {
+          .hero {
+            padding-top: 12rem;
+          }
+        }
+        @media (max-height: 500px) {
+          .hero {
+            padding-top: 16rem;
+          }
+        }
+      `}</style>
     </section>
   );
 }

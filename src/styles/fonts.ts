@@ -9,4 +9,5 @@ export const lato = Lato({
 export const knewave = Knewave({
   weight: "400",
   style: "normal",
+  subsets: ["latin", "latin-ext"],
 });

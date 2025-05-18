@@ -108,7 +108,7 @@ export default function HeroSerie({
         </ul>
 
         <div className="flex flex-col gap-4">
-          <h1 className="text-6xl font-black">{serie.name}</h1>
+          <h1 className="text-6xl font-black max-sm:text-4xl">{serie.name}</h1>
 
           {serie.tagline && (
             <p className="text-xl font-medium text-text/75">{serie.tagline}</p>
