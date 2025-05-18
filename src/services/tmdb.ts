@@ -30,6 +30,12 @@ export async function getTopRatedMovies(): Promise<Media[]> {
   return response.data.results;
 }
 
+export async function getPopularTv() {
+  const response = await axios.get("api/tv/popular");
+
+  return response.data.results;
+}
+
 export async function getMediaDetails(
   type: MediaType,
   id: number
