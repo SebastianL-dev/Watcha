@@ -5,6 +5,7 @@ import MainSwiper from "../ui/mainSwiper";
 import Media from "@/interfaces/media.interface";
 import { Popular } from "../icons/popular";
 import { getPopularTv } from "@/services/tmdb";
+import SliderSkeleton from "../skeletons/sliderSkeleton";
 
 export default function PopularTvSection() {
   const [popularTv, setPopularTv] = useState<Media[]>();
@@ -19,18 +20,16 @@ export default function PopularTvSection() {
     fetchPopularTv();
   }, []);
 
-  if (!popularTv) return <>Not found</>;
-
   return (
-    <section className="flex flex-col w-[calc(100_-_margin)] my-42">
+    <section className="flex flex-col w-[calc(100_-_margin)] my-42 min-h-[528px]">
       <div className="text-text flex gap-4 items-center mb-8 mx-[10%]">
         <Popular />
         <h2 className="font-bold text-3xl">Popular Series</h2>
       </div>
 
-      <div className="">
-        <MainSwiper media={popularTv} media_type="tv" />
-      </div>
+      {popularTv && <MainSwiper media={popularTv} media_type="tv" />}
+
+      {!popularTv && <SliderSkeleton />}
     </section>
   );
 }

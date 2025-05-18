@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { MediaDetail, MediaType } from "@/types/common.types";
 import TvCard from "../cards/tvCard";
 import Serie from "@/interfaces/serie.interface";
+import MediaCardSkeleton from "../skeletons/mediaCardSkeleton";
 
 export default function MainSwiper({
   media,
@@ -59,22 +60,26 @@ export default function MainSwiper({
 
   return (
     <div className="relative">
-      <Swiper {...swiperConfig} className="media-carousel">
-        {mediaDetails.map((details, index) => {
-          const originalMedia = media[index];
-          const type = originalMedia.media_type ?? media_type;
+      {mediaDetails && (
+        <Swiper {...swiperConfig} className="media-carousel">
+          {mediaDetails.map((details, index) => {
+            const originalMedia = media[index];
+            const type = originalMedia.media_type ?? media_type;
 
-          return (
-            <SwiperSlide key={originalMedia.id}>
-              {type === "movie" ? (
-                <MovieCard movie={details as Movie} id={originalMedia.id} />
-              ) : (
-                <TvCard tv={details as Serie} id={originalMedia.id} />
-              )}
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
+            return (
+              <SwiperSlide key={originalMedia.id}>
+                {type === "movie" ? (
+                  <MovieCard movie={details as Movie} id={originalMedia.id} />
+                ) : (
+                  <TvCard tv={details as Serie} id={originalMedia.id} />
+                )}
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      )}
+
+      {!mediaDetails && <MediaCardSkeleton />}
 
       <style jsx global>{`
         .swiper-button-next::after,
