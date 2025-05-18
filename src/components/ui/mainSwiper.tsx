@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Mousewheel } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import { getImageUrl, getMediaDetails } from "@/services/tmdb";
+import { getMediaDetails } from "@/services/tmdb";
 import MovieCard from "../cards/movieCard";
 import Movie from "@/interfaces/movie.interface";
 import { useEffect, useState } from "react";

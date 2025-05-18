@@ -24,7 +24,7 @@ export default function TopRatedSection() {
     fetchRatedMovies();
 
     console.log(topRated);
-  }, []);
+  }, [topRated]);
 
   if (!topRated) return <></>;
 

@@ -29,7 +29,7 @@ export default function MoviePage({
     };
 
     fetchMovie();
-  }, []);
+  }, [movieId]);
 
   if (!movie) return <HeroSkeleton />;
 

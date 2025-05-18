@@ -34,7 +34,7 @@ export async function GET(req: NextRequest) {
     });
   } catch (error) {
     return NextResponse.json(
-      { error: "Failed to fetch details.", status: 500 },
+      { error: `Failed to fetch details: ${error}`, status: 500 },
       { status: 500 }
     );
   }

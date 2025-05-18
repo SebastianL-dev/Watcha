@@ -29,7 +29,7 @@ export default function SeriePage({
     };
 
     fetchMovie();
-  }, []);
+  }, [serieId]);
 
   if (!serie) return <HeroSkeleton />;
 

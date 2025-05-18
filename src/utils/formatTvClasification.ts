@@ -1,5 +1,4 @@
 import ContentRatings from "@/interfaces/contentRatings.interface";
-import ReleaseDates from "@/interfaces/releaseDates.interface";
 
 export default function FormatTvClasification(
   clasification: ContentRatings[]

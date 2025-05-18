@@ -26,7 +26,7 @@ export async function GET(req: NextRequest) {
     });
   } catch (error) {
     return NextResponse.json(
-      { error: "Failed to fetch release dates.", status: 500 },
+      { error: `Failed to fetch release dates: ${error}`, status: 500 },
       { status: 500 }
     );
   }
