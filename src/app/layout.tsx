@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { lato } from "@/styles/fonts";
 import Header from "@/components/layout/header";
-import Footer from "@/components/layout/footer";
 
 import "@/styles/globals.css";
 
@@ -23,7 +22,6 @@ export default function RootLayout({
       <body className={`${lato.className} antialiased`}>
         <Header />
         {children}
-        <Footer />
       </body>
     </html>
   );

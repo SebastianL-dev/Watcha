@@ -16,6 +16,7 @@ export default function MovieCard({ movie, id }: { movie: Movie; id: number }) {
             src={getImageUrl(movie.poster_path, "original")}
             alt={`${movie.title} poster image`}
             fill
+            sizes="(max-width: 1200px) 50vw, 33vw"
             className="z-10 object-cover w-full h-full group-hover:scale-110 transition-all ease-in-out duration-200"
           />
 

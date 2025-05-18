@@ -6,7 +6,7 @@ import { Instagram } from "../icons/instagram";
 
 export default function Footer() {
   return (
-    <footer className="flex flex-col justify-center gap-8 mx-[10%] my-20 p-20 w-[calc(100%_-_margin)] z-100 border-2 border-neutral-500/15 shadow-footer/10 rounded-2xl">
+    <footer className="flex flex-col justify-center gap-8 mx-[10%] my-20 p-12 w-[calc(100%_-_margin)] z-100 border-2 border-neutral-500/15 shadow-footer/10 rounded-2xl">
       <div className="mb-4 flex">
         <section className="flex flex-col gap-10">
           <div className="flex flex-col gap-4">

@@ -15,6 +15,7 @@ export default function TvCard({ tv, id }: { tv: Serie; id: number }) {
             src={getImageUrl(tv.poster_path, "original")}
             alt={`${tv.name} poster image`}
             fill
+            sizes="(max-width: 1200px) 50vw, 33vw"
             className="z-10 object-cover w-full h-full group-hover:scale-110 transition-all ease-in-out duration-200"
           />
 
