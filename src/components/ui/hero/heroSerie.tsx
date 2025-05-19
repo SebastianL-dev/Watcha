@@ -49,7 +49,7 @@ export default function HeroSerie({
       </div>
 
       <article className="flex flex-col relative z-50 text-text">
-        <ul className="flex gap-4 items-center w-fit mb-8">
+        <ul className="flex gap-4 items-center w-fit mb-8 max-sm:flex-col max-sm:items-start">
           <li className="h-fit flex">
             <div className="text-base text-text/70 font-medium flex gap-2 items-center">
               <Tv />
@@ -70,10 +70,10 @@ export default function HeroSerie({
                   Episodes
                 </span>
 
-                <div className="w-1 h-1 rounded-full bg-text/40 mx-2" />
+                <div className="w-1 h-1 rounded-full bg-text/40 mx-2 max-sm:hidden" />
 
                 <span
-                  className={`${
+                  className={`max-sm:hidden ${
                     serie.in_production
                       ? "text-sky-400/60 text-shadow-blue"
                       : "text-text/40 text-shadow-text"
@@ -85,11 +85,23 @@ export default function HeroSerie({
             </div>
           </li>
           {clasification !== "" && (
-            <li>
+            <li className="flex items-center">
               <span
                 className={`font-light border-1 text-sm px-2.5 py-0.5 rounded-full ${rateColor()}`}
               >
                 {clasification}
+              </span>
+
+              <div className="w-1 h-1 rounded-full bg-text/40 mx-2 max-sm:flex hidden" />
+
+              <span
+                className={`max-sm:flex hidden ${
+                  serie.in_production
+                    ? "text-sky-400/60 text-shadow-blue"
+                    : "text-text/40 text-shadow-text"
+                }`}
+              >
+                {serie.in_production ? "In production" : "Completed"}
               </span>
             </li>
           )}
@@ -115,7 +127,7 @@ export default function HeroSerie({
           )}
         </div>
 
-        <ul className="flex gap-4 text-sm my-6" aria-label="Generes">
+        <ul className="flex gap-4 text-sm my-6 flex-wrap" aria-label="Generes">
           {serie.genres.map((genere) => {
             return (
               <li key={genere.id}>
@@ -135,7 +147,7 @@ export default function HeroSerie({
 
         <p className="max-w-xl text-text/90 mb-16">{serie.overview}</p>
 
-        <ul className="flex gap-6" aria-label="Action buttons">
+        <ul className="flex gap-6 max-sm:flex-col" aria-label="Action buttons">
           <li>
             <MainLinkButton
               text="Watch trailer"

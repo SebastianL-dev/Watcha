@@ -35,10 +35,17 @@ export default function MoviePage({
 
   return (
     <section
-      className="flex mx-[10%] h-screen items-center"
+      className="flex mx-[10%] h-screen items-center max-md:justify-center max-md:mb-64 max-[400px]:pt-64 hero"
       aria-label="Hero section with trending media"
     >
       <HeroMovie movie={movie} release={releaseDates} />
+      <style jsx global>{`
+        @media (height < 700px) {
+          .hero {
+            padding-top: 16rem;
+          }
+        }
+      `}</style>
     </section>
   );
 }

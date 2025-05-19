@@ -72,12 +72,7 @@ export default function MainHero() {
       )}
 
       <style jsx global>{`
-        @media (max-height: 700px) {
-          .hero {
-            padding-top: 12rem;
-          }
-        }
-        @media (max-height: 500px) {
+        @media (height < 700px) {
           .hero {
             padding-top: 16rem;
           }
