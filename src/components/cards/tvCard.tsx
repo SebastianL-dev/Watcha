@@ -16,7 +16,7 @@ export default function TvCard({ tv, id }: { tv: Serie; id: number }) {
             alt={`${tv.name} poster image`}
             fill
             sizes="(max-width: 1200px) 50vw, 33vw"
-            className="z-10 object-cover w-full h-full group-hover:scale-110 transition-all ease-in-out duration-200"
+            className="z-10 object-cover w-full h-full group-hover:scale-110 transition-all ease-in-out duration-200 aspect-auto"
           />
 
           <div className="absolute flex flex-col items-center gap-1 z-20 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-transparent group-hover:text-text/50 transition-all ease-in-out duration-200 scale-50 group-hover:scale-100">

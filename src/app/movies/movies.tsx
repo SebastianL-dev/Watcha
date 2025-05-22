@@ -39,10 +39,12 @@ export default function Movies() {
     <>
       <main className="mb-36">
         <section className="flex flex-col mx-[10%] items-center justify-center pt-52">
-          <h1 className="text-6xl font-bold mb-12">Discover Movies</h1>
+          <h1 className="text-6xl font-bold mb-12 text-center">
+            Discover Movies
+          </h1>
 
           <Paginate pages={pages} page={page} changePage={changePage} />
-          <ul className="grid grid-cols-5 gap-4 w-full my-16">
+          <ul className="grid grid-cols-5 gap-4 w-full my-16 max-[1450]:grid-cols-4 max-[1100]:grid-cols-3 max-[830]:grid-cols-2 max-[550]:grid-cols-1">
             {movies.map((movie) => {
               return (
                 <li key={movie.id}>

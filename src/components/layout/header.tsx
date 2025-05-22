@@ -50,7 +50,12 @@ export default function Header() {
 
       <div>
         <ul className="flex gap-4 text-neutral-50/70">
-          <IconLink icon={<Search />} href="" aria="" blank={false} />
+          <IconLink
+            icon={<Search />}
+            href=""
+            aria="Search movies or tv series"
+            blank={false}
+          />
           <IconLink
             icon={<Github />}
             href="https://github.com/SebastianL-dev/watcha"

@@ -17,7 +17,7 @@ export default function TopRatedMovieList() {
     };
 
     fetchRatedMovies();
-  }, [topRated]);
+  }, []);
 
   if (!topRated) return <></>;
 
