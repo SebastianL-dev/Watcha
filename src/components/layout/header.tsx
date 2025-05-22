@@ -36,6 +36,7 @@ export default function Header() {
         href={"/"}
         whileHover={{ scale: 1.2 }}
         whileTap={{ scale: 0.9 }}
+        aria-label="Watcha logo link to home page"
       >
         <Watcha className="text-primary" />
       </motion.a>

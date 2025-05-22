@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { lato } from "@/styles/fonts";
 import Header from "@/components/layout/header";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import "@/styles/globals.css";
 
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body className={`${lato.className} antialiased`}>
         <Header />
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );
