@@ -6,7 +6,7 @@ import BigMovieCard from "../cards/bigMovieCard";
 import { useEffect, useState } from "react";
 import { getTopRatedMovies } from "@/services/tmdb";
 
-export default function TopRatedList() {
+export default function TopRatedMovieList() {
   const [topRated, setTopRated] = useState<Media[]>();
 
   useEffect(() => {

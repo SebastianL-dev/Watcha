@@ -1,7 +1,11 @@
 "use client";
 
+import Footer from "@/components/layout/footer";
+import PopularMoviesSection from "@/components/sections/popularMoviesSection";
+import TrendingSection from "@/components/sections/trendingSection";
 import HeroSkeleton from "@/components/skeletons/heroSkeleton";
 import HeroMovie from "@/components/ui/hero/heroMovie";
+import TopRatedMovieList from "@/components/ui/topRatedMovieList";
 import Movie from "@/interfaces/movie.interface";
 import ReleaseDates from "@/interfaces/releaseDates.interface";
 import { getMediaDetails, getMovieClasification } from "@/services/tmdb";
@@ -34,18 +38,24 @@ export default function MoviePage({
   if (!movie) return <HeroSkeleton />;
 
   return (
-    <section
-      className="flex mx-[10%] h-screen items-center max-md:justify-center max-md:mb-64 max-[400px]:pt-64 hero"
-      aria-label="Hero section with trending media"
-    >
-      <HeroMovie movie={movie} release={releaseDates} />
-      <style jsx global>{`
-        @media (height < 700px) {
-          .hero {
-            padding-top: 16rem;
-          }
-        }
-      `}</style>
-    </section>
+    <>
+      <main className="mb-36">
+        <section className="flex mx-[10%] h-screen items-center max-md:justify-center max-md:mb-64 max-[400px]:pt-64 hero">
+          <HeroMovie movie={movie} release={releaseDates} />
+          <style jsx global>{`
+            @media (height < 700px) {
+              .hero {
+                padding-top: 16rem;
+              }
+            }
+          `}</style>
+        </section>
+
+        <PopularMoviesSection />
+        <TrendingSection />
+        <TopRatedMovieList />
+      </main>
+      <Footer />
+    </>
   );
 }

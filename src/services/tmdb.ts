@@ -3,6 +3,7 @@ import { MediaDetail, MediaType } from "@/types/common.types";
 import axios from "axios";
 import ReleaseDates from "@/interfaces/releaseDates.interface";
 import ContentRatings from "@/interfaces/contentRatings.interface";
+import Data from "@/interfaces/data.interface";
 
 const image_url = "https://image.tmdb.org/t/p/";
 
@@ -30,8 +31,30 @@ export async function getTopRatedMovies(): Promise<Media[]> {
   return response.data.results;
 }
 
-export async function getPopularTv() {
+export async function getDiscoverMovies(page: number): Promise<Data> {
+  const response = await axios.get("/api/movies/discover", {
+    params: { page },
+  });
+
+  return response.data;
+}
+
+export async function getPopularTv(): Promise<Media[]> {
   const response = await axios.get("api/tv/popular");
+
+  return response.data.results;
+}
+
+export async function getTopRatedTv(): Promise<Media[]> {
+  const response = await axios.get("/api/tv/top_rated");
+
+  return response.data.results;
+}
+
+export async function getDiscoverTv(page: number): Promise<Media[]> {
+  const response = await axios.get("api/tv/discover", {
+    params: { page },
+  });
 
   return response.data.results;
 }

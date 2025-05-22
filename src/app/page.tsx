@@ -2,7 +2,7 @@ import Footer from "@/components/layout/footer";
 import MainHero from "@/components/sections/mainHero";
 import PopularMoviesSection from "@/components/sections/popularMoviesSection";
 import PopularTvSection from "@/components/sections/popularTvSection";
-import TopRatedSection from "@/components/sections/topRatedSection";
+import TopRatedMoviesSection from "@/components/sections/topRatedMoviesSection";
 import TrendingSection from "@/components/sections/trendingSection";
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
         <MainHero />
         <TrendingSection />
         <PopularMoviesSection />
-        <TopRatedSection />
+        <TopRatedMoviesSection />
         <PopularTvSection />
       </main>
       <Footer />

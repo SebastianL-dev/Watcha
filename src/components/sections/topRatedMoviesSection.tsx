@@ -1,7 +1,7 @@
 import { Trophy } from "../icons/trophy";
-import TopRatedList from "../ui/topRatedList";
+import TopRatedMovieList from "../ui/topRatedMovieList";
 
-export default function TopRatedSection() {
+export default function TopRatedMoviesSection() {
   return (
     <section className="flex flex-col w-[calc(100_-_margin)] my-42 min-h-[670px]">
       <div className="text-text flex gap-4 items-center mb-8 mx-[10%]">
@@ -9,7 +9,7 @@ export default function TopRatedSection() {
         <h2 className="font-bold text-3xl">Top Rated Movies</h2>
       </div>
 
-      <TopRatedList />
+      <TopRatedMovieList />
     </section>
   );
 }

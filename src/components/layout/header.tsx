@@ -44,7 +44,7 @@ export default function Header() {
         <ul className="flex gap-4 max-sm:hidden">
           <NavLink text="Home" href="/" />
           <NavLink text="Movies" href="/movies" />
-          <NavLink text="Series" href="/series" />
+          <NavLink text="Tv series" href="/tv" />
         </ul>
       </nav>
 

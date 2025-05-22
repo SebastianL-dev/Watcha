@@ -9,7 +9,7 @@ import { Watcha } from "../icons/watcha";
 
 export default function MovieCard({ movie, id }: { movie: Movie; id: number }) {
   return (
-    <Link href={`/movie/${id}`} className="group">
+    <Link href={`/movies/${id}`} className="group">
       <article className="flex flex-col rounded-xl overflow-hidden border-2 border-neutral-800 h-full ">
         <div className="flex relative h-[350px] media-image-card before:bg-transparent group-hover:before:bg-neutral-950/50 group-hover:before:backdrop-blur-xs">
           <Image

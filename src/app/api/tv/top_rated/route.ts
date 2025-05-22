@@ -7,7 +7,7 @@ const env = EnvConfig;
 export async function GET() {
   try {
     const response = await api.get(
-      `/movie/top_rated?api_key=${env.api_key}&language=en-US`
+      `/tv/top_rated?api_key=${env.api_key}&language=en-US`
     );
 
     return NextResponse.json(response.data, {
@@ -17,7 +17,7 @@ export async function GET() {
     });
   } catch (error) {
     return NextResponse.json(
-      { error: `Failed to fetch movies: ${error}`, status: 500 },
+      { error: `Failed to fetch tv series: ${error}`, status: 500 },
       { status: 500 }
     );
   }
