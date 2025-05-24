@@ -51,12 +51,12 @@ export async function getTopRatedTv(): Promise<Media[]> {
   return response.data.results;
 }
 
-export async function getDiscoverTv(page: number): Promise<Media[]> {
-  const response = await axios.get("api/tv/discover", {
+export async function getDiscoverTv(page: number): Promise<Data> {
+  const response = await axios.get("/api/tv/discover", {
     params: { page },
   });
 
-  return response.data.results;
+  return response.data;
 }
 
 export async function getMediaDetails(
