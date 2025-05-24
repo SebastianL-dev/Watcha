@@ -1,5 +1,4 @@
 import { Trophy } from "../icons/trophy";
-import TopRatedMovieList from "../ui/topRatedMovieList";
 import TopRatedTvList from "../ui/topRatedTvList";
 
 export default function TopRatedTvSection() {
