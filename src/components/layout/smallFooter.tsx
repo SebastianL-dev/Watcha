@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Github } from "../icons/github";
 import { Instagram } from "../icons/instagram";
-import { Watcha } from "../icons/watcha";
 import IconLink from "../ui/links/iconLink";
 
 export default function SmallFooter() {
