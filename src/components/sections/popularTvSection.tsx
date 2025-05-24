@@ -24,7 +24,7 @@ export default function PopularTvSection() {
     <section className="flex flex-col w-[calc(100_-_margin)] my-42 min-h-[528px]">
       <div className="text-text flex gap-4 items-center mb-8 mx-[10%]">
         <Popular />
-        <h2 className="font-bold text-3xl">Popular Series</h2>
+        <h2 className="font-bold text-3xl">Popular Tv Series</h2>
       </div>
 
       {popularTv && <MainSwiper media={popularTv} media_type="tv" />}

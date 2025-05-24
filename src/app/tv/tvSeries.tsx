@@ -44,7 +44,7 @@ export default function TvSeries() {
           </h1>
 
           <Paginate pages={pages} page={page} changePage={changePage} />
-          <ul className="grid grid-cols-5 gap-4 w-full my-16 max-[1450]:grid-cols-4 max-[1100]:grid-cols-3 max-[830]:grid-cols-2 max-[550]:grid-cols-1">
+          <ul className="grid grid-cols-5 gap-4 w-full my-16 max-[1450]:grid-cols-4 max-[1200]:grid-cols-3 max-[900]:grid-cols-2 max-[600]:grid-cols-1">
             {tv.map((tvSerie) => {
               return (
                 <li key={tvSerie.id}>

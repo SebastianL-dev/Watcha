@@ -25,11 +25,15 @@
   --drop-shadow-violet: 0px 0px 20px #8e51ff;
   --drop-shadow-yellow: 0px 0px 20px #ffd230;
   --drop-shadow-red: 0px 0px 20px #fb2c36;
+
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 body {
   background-color: var(--background-color);
   color: var(--text-color);
+
+  @apply grid min-h-dvh grid-rows-[1fr_auto];
 }
 
 .nav-link::before {

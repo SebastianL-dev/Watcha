@@ -1,14 +1,14 @@
 import { Metadata } from "next";
-import TvPage from "./tv";
+import Search from "./search";
 
 export const metadata: Metadata = {
-  title: "Watcha | Tv",
+  title: "Watcha | Search",
   description: "Find any of your favorite movies and series.",
   icons: {
     icon: "/favicon.webp",
   },
 };
 
-export default function Page({ params }: { params: Promise<{ id: string }> }) {
-  return <TvPage params={params} />;
+export default function Page() {
+  return <Search />;
 }
