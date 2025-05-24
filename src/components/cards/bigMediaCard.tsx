@@ -5,7 +5,6 @@ import { Star } from "../icons/star";
 import FormatDate from "@/utils/formatDate";
 import { Watcha } from "../icons/watcha";
 import Media from "@/interfaces/media.interface";
-import { useEffect } from "react";
 
 export default function BigmediaCard({
   media,
@@ -14,9 +13,6 @@ export default function BigmediaCard({
   media: Media;
   index: number;
 }) {
-  useEffect(() => {
-    console.log(media);
-  });
   return (
     <article className="flex flex-col rounded-2xl overflow-hidden border-2 border-neutral-800 bg-neutral-950 grow h-full">
       <div className="relative flex h-96 media-image-card before:bg-transparent group-hover:before:bg-neutral-950/50 group-hover:before:backdrop-blur-xs">
