@@ -40,7 +40,7 @@ export async function getDiscoverMovies(page: number): Promise<Data> {
 }
 
 export async function getPopularTv(): Promise<Media[]> {
-  const response = await axios.get("api/tv/popular");
+  const response = await axios.get("/api/tv/popular");
 
   return response.data.results;
 }

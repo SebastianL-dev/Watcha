@@ -5,6 +5,7 @@ import { Star } from "../icons/star";
 import FormatDate from "@/utils/formatDate";
 import { Watcha } from "../icons/watcha";
 import Media from "@/interfaces/media.interface";
+import { useEffect } from "react";
 
 export default function BigmediaCard({
   media,
@@ -13,6 +14,9 @@ export default function BigmediaCard({
   media: Media;
   index: number;
 }) {
+  useEffect(() => {
+    console.log(media);
+  });
   return (
     <article className="flex flex-col rounded-2xl overflow-hidden border-2 border-neutral-800 bg-neutral-950 grow h-full">
       <div className="relative flex h-96 media-image-card before:bg-transparent group-hover:before:bg-neutral-950/50 group-hover:before:backdrop-blur-xs">
@@ -33,7 +37,7 @@ export default function BigmediaCard({
 
       <div className="flex flex-col p-6 gap-4 bg-neutral-950 z-10">
         <span className="block text-2xl font-bold text-ellipsis overflow-hidden whitespace-nowrap w-full max-w-[500px] max-md:w-72">
-          {media.title}
+          {media.title ?? media.name}
         </span>
 
         <div className="flex justify-between items-center">
@@ -45,7 +49,9 @@ export default function BigmediaCard({
 
             <div className="text-base text-text/70 font-medium flex gap-2 items-center">
               <Date className="" />
-              <time>{FormatDate(media.release_date)}</time>
+              <time>
+                {FormatDate(media.release_date ?? media.first_air_date)}
+              </time>
             </div>
           </div>
 

@@ -1,51 +1,14 @@
-"use client";
+import { Metadata } from "next";
+import TvPage from "./tv";
 
-import HeroSkeleton from "@/components/skeletons/heroSkeleton";
-import HeroSerie from "@/components/ui/hero/heroSerie";
-import ContentRatings from "@/interfaces/contentRatings.interface";
-import Serie from "@/interfaces/serie.interface";
-import { getMediaDetails, getTvClasification } from "@/services/tmdb";
-import { MediaType } from "@/types/common.types";
-import { use, useEffect, useState } from "react";
+export const metadata: Metadata = {
+  title: "Watcha | TV",
+  description: "Find any of your favorite movies and series.",
+  icons: {
+    icon: "/favicon.webp",
+  },
+};
 
-export default function SeriePage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = use(params);
-  const serieId = parseInt(id);
-
-  const [serie, setSerie] = useState<Serie>();
-  const [contentRatings, setContentRatings] = useState<ContentRatings[]>();
-
-  useEffect(() => {
-    const fetchMovie = async () => {
-      const details = await getMediaDetails("tv" as MediaType, serieId);
-      const ratings = await getTvClasification(details.id);
-
-      setSerie(details as Serie);
-      setContentRatings(ratings);
-    };
-
-    fetchMovie();
-  }, [serieId]);
-
-  if (!serie) return <HeroSkeleton />;
-
-  return (
-    <section
-      className="flex mx-[10%] h-screen items-center max-md:justify-center max-md:mb-64 max-[400px]:pt-64 hero"
-      aria-label="Hero section with trending media"
-    >
-      <HeroSerie serie={serie} rating={contentRatings} />
-      <style jsx global>{`
-        @media (height < 700px) {
-          .hero {
-            padding-top: 16rem;
-          }
-        }
-      `}</style>
-    </section>
-  );
+export default function Page({ params }: { params: Promise<{ id: string }> }) {
+  return <TvPage params={params} />;
 }

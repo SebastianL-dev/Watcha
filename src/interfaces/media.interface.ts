@@ -2,7 +2,9 @@ export default interface Media {
   backdrop_path: string | null;
   id: number;
   title: string;
+  name: string;
   original_title: string;
+  first_air_date: string;
   overview: string;
   poster_path: string | null;
   media_type: string;
