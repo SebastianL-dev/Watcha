@@ -1,5 +1,4 @@
 import { EnvConfig } from "@/config/env.config";
-import Media from "@/interfaces/media.interface";
 import { api } from "@/services/axios.config";
 import { NextRequest, NextResponse } from "next/server";
 
