@@ -21,7 +21,8 @@ export default function SearchPage() {
 
     if (input.trim() === "") return;
 
-    router.push(`/search/media?query=${input}`);
+    const query = input.trim().replaceAll(" ", "-");
+    router.push(`/search/media?query=${query}`);
   };
 
   const handleClearInput = () => {
@@ -29,7 +30,7 @@ export default function SearchPage() {
   };
 
   return (
-    <>
+    <div className="grid min-h-dvh grid-rows-[1fr_auto]">
       <main className="mb-36">
         <section className="flex flex-col mx-[10%] items-center justify-center h-full pt-24 gap-12">
           <h1 className="text-7xl font-black max-w-xl text-center">
@@ -82,6 +83,6 @@ export default function SearchPage() {
         </section>
       </main>
       <SmallFooter />
-    </>
+    </div>
   );
 }

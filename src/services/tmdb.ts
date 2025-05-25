@@ -89,3 +89,14 @@ export async function getTvClasification(
 
   return response.data.results;
 }
+
+export async function getSearchMedia(
+  query: string,
+  page: number
+): Promise<Data> {
+  const response = await axios.get("/api/all/search", {
+    params: { query, page },
+  });
+
+  return response.data;
+}

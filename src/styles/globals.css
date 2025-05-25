@@ -32,8 +32,6 @@
 body {
   background-color: var(--background-color);
   color: var(--text-color);
-
-  @apply grid min-h-dvh grid-rows-[1fr_auto];
 }
 
 .nav-link::before {
