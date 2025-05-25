@@ -4,8 +4,10 @@ import Media from "@/interfaces/media.interface";
 import {
   getMediaDetails,
   getMovieClasification,
+  getMovieVideos,
   getTrendingAll,
   getTvClasification,
+  getTvVideos,
 } from "@/services/tmdb";
 import { MediaDetail, MediaType } from "@/types/common.types";
 import { useEffect, useState } from "react";
@@ -16,6 +18,7 @@ import HeroSerie from "../ui/hero/heroSerie";
 import ReleaseDates from "@/interfaces/releaseDates.interface";
 import ContentRatings from "@/interfaces/contentRatings.interface";
 import HeroSkeleton from "../skeletons/heroSkeleton";
+import Video from "@/interfaces/video.interface";
 
 export default function MainHero() {
   const [trendingMedia, setTrendingMedia] = useState<Media>();
@@ -24,6 +27,7 @@ export default function MainHero() {
   const [clasification, setClasification] = useState<
     ReleaseDates[] | ContentRatings[]
   >();
+  const [video, setVideo] = useState<Video>();
 
   useEffect(() => {
     const fetchTrendingMedia = async () => {
@@ -41,9 +45,25 @@ export default function MainHero() {
       if (media_type === "movie") {
         const release = await getMovieClasification(trending[0].id);
         setClasification(release);
+
+        const videos = await getMovieVideos(trending[0].id);
+
+        const trailer = videos.find(
+          (video) =>
+            video.name === "Official Trailer" && video.official === true
+        );
+        setVideo(trailer);
       } else {
         const release = await getTvClasification(trending[0].id);
         setClasification(release);
+
+        const videos = await getTvVideos(trending[0].id);
+
+        const trailer = videos.find(
+          (video) =>
+            video.name === "Official Trailer" && video.official === true
+        );
+        setVideo(trailer);
       }
     };
 
@@ -62,12 +82,14 @@ export default function MainHero() {
         <HeroMovie
           movie={trendingMediaDetails as Movie}
           release={clasification as ReleaseDates[]}
+          video={video as Video}
         />
       )}
       {trendingMedia.media_type === "tv" && (
         <HeroSerie
           serie={trendingMediaDetails as Serie}
           rating={clasification as ContentRatings[]}
+          video={video as Video}
         />
       )}
 

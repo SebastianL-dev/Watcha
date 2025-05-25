@@ -4,6 +4,7 @@ import axios from "axios";
 import ReleaseDates from "@/interfaces/releaseDates.interface";
 import ContentRatings from "@/interfaces/contentRatings.interface";
 import Data from "@/interfaces/data.interface";
+import Video from "@/interfaces/video.interface";
 
 const image_url = "https://image.tmdb.org/t/p/";
 
@@ -99,4 +100,20 @@ export async function getSearchMedia(
   });
 
   return response.data;
+}
+
+export async function getMovieVideos(id: number): Promise<Video[]> {
+  const response = await axios.get("/api/movies/videos", {
+    params: { id },
+  });
+
+  return response.data.results;
+}
+
+export async function getTvVideos(id: number): Promise<Video[]> {
+  const response = await axios.get("/api/tv/videos", {
+    params: { id },
+  });
+
+  return response.data.results;
 }

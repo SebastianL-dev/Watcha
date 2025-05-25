@@ -8,7 +8,12 @@ import HeroSkeleton from "@/components/skeletons/heroSkeleton";
 import HeroSerie from "@/components/ui/hero/heroSerie";
 import ContentRatings from "@/interfaces/contentRatings.interface";
 import Serie from "@/interfaces/serie.interface";
-import { getMediaDetails, getTvClasification } from "@/services/tmdb";
+import Video from "@/interfaces/video.interface";
+import {
+  getMediaDetails,
+  getTvClasification,
+  getTvVideos,
+} from "@/services/tmdb";
 import { MediaType } from "@/types/common.types";
 import { use, useEffect, useState } from "react";
 
@@ -22,12 +27,19 @@ export default function TvPage({
 
   const [serie, setSerie] = useState<Serie>();
   const [contentRatings, setContentRatings] = useState<ContentRatings[]>();
+  const [video, setVideo] = useState<Video>();
 
   useEffect(() => {
     const fetchMovie = async () => {
       const details = await getMediaDetails("tv" as MediaType, serieId);
       const ratings = await getTvClasification(details.id);
+      const videos = await getTvVideos(serieId);
 
+      const trailer = videos.find(
+        (video) => video.name === "Official Trailer" && video.official === true
+      );
+
+      setVideo(trailer);
       setSerie(details as Serie);
       setContentRatings(ratings);
     };
@@ -44,7 +56,11 @@ export default function TvPage({
           className="flex mx-[10%] h-screen items-center max-md:justify-center max-md:mb-64 max-[400px]:pt-64 hero"
           aria-label="Hero section with trending media"
         >
-          <HeroSerie serie={serie} rating={contentRatings} />
+          <HeroSerie
+            serie={serie}
+            rating={contentRatings}
+            video={video as Video}
+          />
           <style jsx global>{`
             @media (height < 700px) {
               .hero {

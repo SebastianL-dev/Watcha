@@ -8,7 +8,12 @@ import HeroMovie from "@/components/ui/hero/heroMovie";
 import TopRatedMovieList from "@/components/ui/topRatedMovieList";
 import Movie from "@/interfaces/movie.interface";
 import ReleaseDates from "@/interfaces/releaseDates.interface";
-import { getMediaDetails, getMovieClasification } from "@/services/tmdb";
+import Video from "@/interfaces/video.interface";
+import {
+  getMediaDetails,
+  getMovieClasification,
+  getMovieVideos,
+} from "@/services/tmdb";
 import { MediaType } from "@/types/common.types";
 import { use, useEffect, useState } from "react";
 
@@ -22,12 +27,19 @@ export default function MoviePage({
 
   const [movie, setMovie] = useState<Movie>();
   const [releaseDates, setReleaseDates] = useState<ReleaseDates[]>();
+  const [video, setVideo] = useState<Video>();
 
   useEffect(() => {
     const fetchMovie = async () => {
       const details = await getMediaDetails("movie" as MediaType, movieId);
       const release = await getMovieClasification(details.id);
+      const videos = await getMovieVideos(movieId);
 
+      const trailer = videos.find(
+        (video) => video.name === "Official Trailer" && video.official === true
+      );
+
+      setVideo(trailer);
       setMovie(details as Movie);
       setReleaseDates(release);
     };
@@ -41,7 +53,11 @@ export default function MoviePage({
     <>
       <main className="mb-36">
         <section className="flex mx-[10%] h-screen items-center max-md:justify-center max-md:mb-64 max-[400px]:pt-64 hero">
-          <HeroMovie movie={movie} release={releaseDates} />
+          <HeroMovie
+            movie={movie}
+            release={releaseDates}
+            video={video as Video}
+          />
           <style jsx global>{`
             @media (height < 700px) {
               .hero {

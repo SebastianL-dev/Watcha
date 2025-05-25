@@ -1,3 +1,5 @@
+"use client";
+
 import Movie from "@/interfaces/movie.interface";
 import { getImageUrl } from "@/services/tmdb";
 import FormatDate from "@/utils/formatDate";
@@ -12,14 +14,22 @@ import { Play } from "@/components/icons/play";
 import { External } from "@/components/icons/external";
 import ReleaseDates from "@/interfaces/releaseDates.interface";
 import FormatMovieClasification from "@/utils/formatMovieClasification";
+import { Close2 } from "@/components/icons/close2";
+import { useState } from "react";
+import { AnimatePresence } from "motion/react";
+import Video from "@/interfaces/video.interface";
+import VideoComponent from "../video/video";
 
 export default function HeroMovie({
   movie,
   release,
+  video,
 }: {
   movie: Movie;
   release?: ReleaseDates[];
+  video: Video;
 }) {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const clasification = release ? FormatMovieClasification(release) : "";
 
   const releaseColor = () => {
@@ -35,9 +45,46 @@ export default function HeroMovie({
       return "bg-red-500/10 border-red-500/85 text-red-500/85 drop-shadow-red";
   };
 
+  const handleOpen = () => {
+    setIsOpen(true);
+    document.body.style.overflow = "hidden";
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+    document.body.style.overflow = "auto";
+  };
+
   return (
     <>
       <div className="flex w-full h-screen hero-image absolute inset-0">
+        <AnimatePresence>
+          {isOpen && (
+            <motion.dialog
+              key="modal"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="flex fixed inset-0 bg-black/80 backdrop-blur-sm items-center justify-center z-[9999] w-full h-screen"
+            >
+              <div className="flex gap-4 w-full m-[15%] items-center justify-center rounded-2xl overflow-hidden border-2 border-neutral-800 drop-shadow-trailer/20 relative">
+                <VideoComponent
+                  videoId={video.key}
+                  title={`${movie.title} ${video.name}`}
+                />
+              </div>
+
+              <button
+                className="text-text absolute top-8 right-8 cursor-pointer"
+                onClick={handleClose}
+              >
+                <Close2 width={32} height={32} />
+              </button>
+            </motion.dialog>
+          )}
+        </AnimatePresence>
+
         <Image
           src={getImageUrl(movie.backdrop_path, "original")}
           alt={`${movie.title} backdrop image`}
@@ -109,13 +156,16 @@ export default function HeroMovie({
 
         <ul className="flex gap-6 max-sm:flex-col" aria-label="Action buttons">
           <li>
-            <MainLinkButton
-              text="Watch trailer"
-              primary
-              blank={false}
-              icon={<Play />}
-              href=""
-            />
+            <motion.button
+              className="flex gap-2 px-4 py-2 w-fit rounded-full items-center font-semibold transition-colors ease-in-out duration-200 text-white bg-green-700 hover:bg-primary shadow-button-primary cursor-pointer"
+              aria-label={"Watch trailer button"}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={handleOpen}
+            >
+              <Play />
+              Watch trailer
+            </motion.button>
           </li>
           {movie.homepage && (
             <li>

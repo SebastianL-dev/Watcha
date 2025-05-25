@@ -25,7 +25,7 @@ export default function MainLinkButton({
       target={blank ? "_blank" : ""}
       rel="noopener noreferrer"
       href={href ? href : ""}
-      whileHover={{ scale: 1.2 }}
+      whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
     >
       {primary ? (

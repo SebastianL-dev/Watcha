@@ -1,3 +1,5 @@
+"use client";
+
 import { getImageUrl } from "@/services/tmdb";
 import FormatDate from "@/utils/formatDate";
 import Image from "next/image";
@@ -11,14 +13,22 @@ import Serie from "@/interfaces/serie.interface";
 import FormatTvClasification from "@/utils/formatTvClasification";
 import ContentRatings from "@/interfaces/contentRatings.interface";
 import { Tv } from "@/components/icons/tv";
+import { useState } from "react";
+import { AnimatePresence } from "motion/react";
+import VideoComponent from "../video/video";
+import { Close2 } from "@/components/icons/close2";
+import Video from "@/interfaces/video.interface";
 
 export default function HeroSerie({
   serie,
   rating,
+  video,
 }: {
   serie: Serie;
   rating?: ContentRatings[];
+  video: Video;
 }) {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const clasification = rating ? FormatTvClasification(rating) : "";
 
   const rateColor = () => {
@@ -35,9 +45,47 @@ export default function HeroSerie({
     if (clasification === "TV-MA")
       return "bg-red-500/10 border-red-500/85 text-red-500/85 drop-shadow-red";
   };
+
+  const handleOpen = () => {
+    setIsOpen(true);
+    document.body.style.overflow = "hidden";
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+    document.body.style.overflow = "auto";
+  };
+
   return (
     <>
       <div className="flex w-full h-screen hero-image absolute inset-0">
+        <AnimatePresence>
+          {isOpen && (
+            <motion.dialog
+              key="modal"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="flex fixed inset-0 bg-black/80 backdrop-blur-sm items-center justify-center z-[9999] w-full h-screen"
+            >
+              <div className="flex gap-4 w-full m-[15%] items-center justify-center rounded-2xl overflow-hidden border-2 border-neutral-800 drop-shadow-trailer/20 relative">
+                <VideoComponent
+                  videoId={video.key}
+                  title={`${serie.name} ${video.name}`}
+                />
+              </div>
+
+              <button
+                className="text-text absolute top-8 right-8 cursor-pointer"
+                onClick={handleClose}
+              >
+                <Close2 width={32} height={32} />
+              </button>
+            </motion.dialog>
+          )}
+        </AnimatePresence>
+
         <Image
           src={getImageUrl(serie.backdrop_path, "original")}
           alt={`${serie.name} backdrop image`}
@@ -149,13 +197,16 @@ export default function HeroSerie({
 
         <ul className="flex gap-6 max-sm:flex-col" aria-label="Action buttons">
           <li>
-            <MainLinkButton
-              text="Watch trailer"
-              primary
-              blank={false}
-              icon={<Play />}
-              href=""
-            />
+            <motion.button
+              className="flex gap-2 px-4 py-2 w-fit rounded-full items-center font-semibold transition-colors ease-in-out duration-200 text-white bg-green-700 hover:bg-primary shadow-button-primary cursor-pointer"
+              aria-label={"Watch trailer button"}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={handleOpen}
+            >
+              <Play />
+              Watch trailer
+            </motion.button>
           </li>
           {serie.homepage && (
             <li>
