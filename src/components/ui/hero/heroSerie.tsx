@@ -179,15 +179,14 @@ export default function HeroSerie({
           {serie.genres.map((genere) => {
             return (
               <li key={genere.id}>
-                <motion.a
+                <motion.span
                   className="flex gap-2 items-center text-shadow-main drop-shadow-main bg-primary/15 px-3 py-1 rounded-full backdrop-blur-sm"
-                  aria-label={`Link to ${genere.name} genere`}
-                  href={"/"}
+                  aria-label={`${genere.name} genere`}
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
                 >
                   {genere.name}
-                </motion.a>
+                </motion.span>
               </li>
             );
           })}
