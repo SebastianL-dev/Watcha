@@ -9,6 +9,7 @@ import Movie from "@/interfaces/movie.interface";
 import Serie from "@/interfaces/serie.interface";
 import { getMediaDetails, getSearchMedia } from "@/services/tmdb";
 import { MediaDetail } from "@/types/common.types";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function SearchMedia() {
@@ -18,26 +19,39 @@ export default function SearchMedia() {
   const [page, setPage] = useState<number>(1);
   const [query, setQuery] = useState<string>("");
 
+  const router = useRouter();
+
   const fetchMedia = async (query: string, page: number) => {
-    const search = await getSearchMedia(query, page);
-    const filteredResults = search.results.filter(
-      (media) =>
-        (media.media_type === "movie" || media.media_type === "tv") &&
-        media.poster_path !== null
-    );
+    try {
+      const search = await getSearchMedia(query, page);
 
-    const details = await Promise.all(
-      filteredResults.map((media) =>
-        getMediaDetails(media.media_type === "movie" ? "movie" : "tv", media.id)
-      )
-    );
+      if (!search || search.results.length === 0) {
+        router.push("/not-found");
+        return;
+      }
 
-    console.log("Search results:", search.results);
-    console.log("Media details:", details);
+      const filteredResults = search.results.filter(
+        (media) =>
+          (media.media_type === "movie" || media.media_type === "tv") &&
+          media.poster_path !== null
+      );
 
-    setMedia(details);
-    setShortMedia(filteredResults);
-    setPages(search.total_pages);
+      const details = await Promise.all(
+        filteredResults.map((media) =>
+          getMediaDetails(
+            media.media_type === "movie" ? "movie" : "tv",
+            media.id
+          )
+        )
+      );
+
+      setMedia(details);
+      setShortMedia(filteredResults);
+      setPages(search.total_pages);
+    } catch (error) {
+      console.error("Error al cargar media:", error);
+      router.push("/not-found");
+    }
   };
 
   useEffect(() => {

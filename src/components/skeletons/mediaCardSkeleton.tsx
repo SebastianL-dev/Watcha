@@ -1,10 +1,10 @@
-import { Image } from "../icons/image";
+import { NoImage } from "../icons/image";
 
 export default function MediaCardSkeleton() {
   return (
     <article className="flex flex-col rounded-xl overflow-hidden border-2 border-neutral-800 h-full w-full">
       <div className="flex relative h-[350px] media-image-card text-text/30 justify-center items-center animate-pulse">
-        <Image width={100} height={100} aria-label="Loading image" />
+        <NoImage width={100} height={100} aria-label="Loading image" />
       </div>
 
       <div className="flex flex-col gap-2 bg-neutral-950 backdrop-blur-sm p-2 grow z-10">

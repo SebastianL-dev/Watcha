@@ -19,6 +19,7 @@ import { useState } from "react";
 import { AnimatePresence } from "motion/react";
 import Video from "@/interfaces/video.interface";
 import VideoComponent from "../video/video";
+import { NoImage } from "@/components/icons/image";
 
 export default function HeroMovie({
   movie,
@@ -58,41 +59,94 @@ export default function HeroMovie({
   return (
     <>
       <div className="flex w-full h-screen hero-image absolute inset-0">
-        <AnimatePresence>
-          {isOpen && (
-            <motion.dialog
-              key="modal"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="flex fixed inset-0 bg-black/80 backdrop-blur-sm items-center justify-center z-[9999] w-full h-screen"
-            >
-              <div className="flex gap-4 w-full m-[15%] items-center justify-center rounded-2xl overflow-hidden border-2 border-neutral-800 drop-shadow-trailer/20 relative">
-                <VideoComponent
-                  videoId={video.key}
-                  title={`${movie.title} ${video.name}`}
-                />
-              </div>
-
-              <button
-                className="text-text absolute top-8 right-8 cursor-pointer"
-                onClick={handleClose}
+        {video && (
+          <AnimatePresence>
+            {isOpen && (
+              <motion.dialog
+                key="modal"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="flex fixed inset-0 bg-black/80 backdrop-blur-sm items-center justify-center z-[9999] w-full h-screen"
               >
-                <Close2 width={32} height={32} />
-              </button>
-            </motion.dialog>
-          )}
-        </AnimatePresence>
+                <div className="flex gap-4 w-full m-[15%] items-center justify-center rounded-2xl overflow-hidden border-2 border-neutral-800 drop-shadow-trailer/20 relative">
+                  <VideoComponent
+                    videoId={video.key}
+                    title={`${movie.title} ${video.name}`}
+                  />
+                </div>
 
-        <Image
-          src={getImageUrl(movie.backdrop_path, "original")}
-          alt={`${movie.title} backdrop image`}
-          fill
-          priority
-          loading="eager"
-          className="object-cover relative z-0"
-        />
+                <button
+                  className="text-text absolute top-8 right-8 cursor-pointer"
+                  onClick={handleClose}
+                >
+                  <Close2 width={32} height={32} />
+                </button>
+              </motion.dialog>
+            )}
+          </AnimatePresence>
+        )}
+
+        {!video && (
+          <AnimatePresence>
+            {isOpen && (
+              <motion.dialog
+                key="modal"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="flex fixed inset-0 bg-black/80 backdrop-blur-sm items-center justify-center z-[9999] w-full h-screen"
+              >
+                <div className="flex flex-col items-center justify-center h-fit text-center max-w-xl text-text p-12 bg-background gap-4 w-fit m-[15%] rounded-2xl overflow-hidden border-2 border-neutral-800 drop-shadow-trailer/20 relative">
+                  <span className="text-6xl font-black mb-2">
+                    Oops! This place looks empty
+                  </span>
+                  <p className="text-text/50 mb-6 text-lg">
+                    The trailer for this movie is not available at the moment.
+                    Please check back later or explore other movies.
+                  </p>
+
+                  <div className="not-found relative">
+                    <img
+                      src="https://cdn.prod.website-files.com/6476dfb953dc2bc84373e1b2/655db2ba500155ba79ffd5cb_404-img.svg"
+                      alt="Not Found image"
+                    />
+                  </div>
+                </div>
+
+                <button
+                  className="text-text absolute top-8 right-8 cursor-pointer"
+                  onClick={handleClose}
+                >
+                  <Close2 width={32} height={32} />
+                </button>
+              </motion.dialog>
+            )}
+          </AnimatePresence>
+        )}
+
+        {movie.backdrop_path && (
+          <Image
+            src={getImageUrl(movie.backdrop_path, "original")}
+            alt={`${movie.title} backdrop image`}
+            fill
+            priority
+            loading="eager"
+            className="object-cover relative z-0"
+          />
+        )}
+
+        {!movie.backdrop_path && (
+          <div className="w-full h-full bg-background relative z-0 items-center justify-center flex">
+            <NoImage
+              className="text-neutral-800 animate-pulse"
+              width={500}
+              height={500}
+            />
+          </div>
+        )}
       </div>
 
       <article className="flex flex-col relative z-50 text-text">
@@ -141,7 +195,6 @@ export default function HeroMovie({
                 <motion.span
                   className="flex gap-2 items-center text-shadow-main drop-shadow-main bg-primary/15 px-3 py-1 rounded-full backdrop-blur-sm"
                   aria-label={`${genere.name} genere`}
-                  whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
                 >
                   {genere.name}

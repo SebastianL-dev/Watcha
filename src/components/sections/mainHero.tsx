@@ -19,6 +19,7 @@ import ReleaseDates from "@/interfaces/releaseDates.interface";
 import ContentRatings from "@/interfaces/contentRatings.interface";
 import HeroSkeleton from "../skeletons/heroSkeleton";
 import Video from "@/interfaces/video.interface";
+import { useRouter } from "next/navigation";
 
 export default function MainHero() {
   const [trendingMedia, setTrendingMedia] = useState<Media>();
@@ -29,41 +30,50 @@ export default function MainHero() {
   >();
   const [video, setVideo] = useState<Video>();
 
+  const router = useRouter();
+
   useEffect(() => {
     const fetchTrendingMedia = async () => {
-      const trending = await getTrendingAll();
+      try {
+        const trending = await getTrendingAll();
 
-      if (!trending || trending.length === 0) return;
+        if (!trending || trending.length === 0) {
+          router.push("/not-found");
+          return;
+        }
 
-      const { media_type, id } = trending[0];
+        const { media_type, id } = trending[0];
 
-      const details = await getMediaDetails(media_type as MediaType, id);
+        const details = await getMediaDetails(media_type as MediaType, id);
 
-      setTrendingMedia(trending[0]);
-      setTrendingMediaDetails(details);
+        if (!details) {
+          router.push("/not-found");
+          return;
+        }
 
-      if (media_type === "movie") {
-        const release = await getMovieClasification(trending[0].id);
+        setTrendingMedia(trending[0]);
+        setTrendingMediaDetails(details);
+
+        let release, videos;
+
+        if (media_type === "movie") {
+          release = await getMovieClasification(id);
+          videos = await getMovieVideos(id);
+        } else {
+          release = await getTvClasification(id);
+          videos = await getTvVideos(id);
+        }
+
         setClasification(release);
-
-        const videos = await getMovieVideos(trending[0].id);
 
         const trailer = videos.find(
           (video) =>
             video.name === "Official Trailer" && video.official === true
         );
         setVideo(trailer);
-      } else {
-        const release = await getTvClasification(trending[0].id);
-        setClasification(release);
-
-        const videos = await getTvVideos(trending[0].id);
-
-        const trailer = videos.find(
-          (video) =>
-            video.name === "Official Trailer" && video.official === true
-        );
-        setVideo(trailer);
+      } catch (error) {
+        console.error("Error al cargar media:", error);
+        router.push("/not-found");
       }
     };
 

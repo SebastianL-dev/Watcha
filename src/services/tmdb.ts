@@ -9,7 +9,7 @@ import Video from "@/interfaces/video.interface";
 const image_url = "https://image.tmdb.org/t/p/";
 
 export function getImageUrl(path: string | null, size: string): string {
-  if (!path) return "/";
+  if (!path) return "";
 
   return `${image_url}/${size}${path}`;
 }

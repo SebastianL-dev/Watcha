@@ -15,6 +15,7 @@ import {
   getMovieVideos,
 } from "@/services/tmdb";
 import { MediaType } from "@/types/common.types";
+import { useRouter } from "next/navigation";
 import { use, useEffect, useState } from "react";
 
 export default function MoviePage({
@@ -29,19 +30,32 @@ export default function MoviePage({
   const [releaseDates, setReleaseDates] = useState<ReleaseDates[]>();
   const [video, setVideo] = useState<Video>();
 
+  const router = useRouter();
+
   useEffect(() => {
     const fetchMovie = async () => {
-      const details = await getMediaDetails("movie" as MediaType, movieId);
-      const release = await getMovieClasification(details.id);
-      const videos = await getMovieVideos(movieId);
+      try {
+        const details = await getMediaDetails("movie" as MediaType, movieId);
+        const release = await getMovieClasification(details.id);
+        const videos = await getMovieVideos(movieId);
 
-      const trailer = videos.find(
-        (video) => video.name === "Official Trailer" && video.official === true
-      );
+        if (!details || !release || !videos) {
+          router.push("/not-found");
+          return;
+        }
 
-      setVideo(trailer);
-      setMovie(details as Movie);
-      setReleaseDates(release);
+        const trailer = videos.find(
+          (video) =>
+            video.name === "Official Trailer" && video.official === true
+        );
+
+        setVideo(trailer);
+        setMovie(details as Movie);
+        setReleaseDates(release);
+      } catch (error) {
+        console.error("Error al cargar media:", error);
+        router.push("/not-found");
+      }
     };
 
     fetchMovie();
