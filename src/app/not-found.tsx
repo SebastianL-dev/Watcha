@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <div className="grid min-h-dvh grid-rows-[1fr_auto]">
       <main className="mb-36 justify-center flex flex-col items-center h-full">
-        <div className="flex flex-col items-center justify-center h-full text-center max-w-xl">
+        <div className="flex flex-col items-center justify-center h-full text-center max-w-xl mx-[10%]">
           <h1 className="text-6xl font-black mb-2">
             Oops! This place looks empty
           </h1>
