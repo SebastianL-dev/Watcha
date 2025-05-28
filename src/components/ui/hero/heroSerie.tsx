@@ -236,7 +236,7 @@ export default function HeroSerie({
                 <motion.span
                   className="flex gap-2 items-center text-shadow-main drop-shadow-main bg-primary/15 px-3 py-1 rounded-full backdrop-blur-sm"
                   aria-label={`${genere.name} genere`}
-                  whileHover={{ scale: 1.2 }}
+                  whileHover={{ scale: 1.1 }}
                 >
                   {genere.name}
                 </motion.span>
